@@ -36,20 +36,21 @@ export const MpvSettings = memo(() => {
     // const { pause } = usePlayerControls();
     // const { clearQueue } = useQueueControls();
 
-    const [mpvPath, setMpvPath] = useState('');
+    const defaultMpvPath = '/usr/bin/mpv';
+    const [mpvPath, setMpvPath] = useState(defaultMpvPath);
 
     const handleSetMpvPath = async (clear?: boolean) => {
         if (clear) {
-            localSettings?.set('mpv_path', undefined);
-            setMpvPath('');
+            localSettings?.set('mpv_path', defaultMpvPath);
+            setMpvPath(defaultMpvPath);
             return;
         }
 
         const result = await localSettings?.openFileSelector();
 
         if (result === null) {
-            localSettings?.set('mpv_path', undefined);
-            setMpvPath('');
+            localSettings?.set('mpv_path', defaultMpvPath);
+            setMpvPath(defaultMpvPath);
             return;
         }
 
@@ -59,9 +60,9 @@ export const MpvSettings = memo(() => {
 
     useEffect(() => {
         const getMpvPath = async () => {
-            if (!localSettings) return setMpvPath('');
+            if (!localSettings) return setMpvPath(defaultMpvPath);
             const mpvPath = (await localSettings.get('mpv_path')) as string | undefined;
-            return setMpvPath(mpvPath || '');
+            return setMpvPath(mpvPath || defaultMpvPath);
         };
 
         getMpvPath();
