@@ -80,19 +80,21 @@ export const MpvSettings = () => {
     const [mpvPath, setMpvPath] = useState(
         (localSettings?.get('mpv_path') as string | undefined) || '',
     );
+    
+    const defaultMpvPath = '/usr/bin/mpv';
 
     const handleSetMpvPath = async (clear?: boolean) => {
         if (clear) {
-            localSettings?.set('mpv_path', undefined);
-            setMpvPath('');
+            localSettings?.set('mpv_path', defaultMpvPath);
+            setMpvPath(defaultMpvPath);
             return;
         }
 
         const result = await localSettings?.openFileSelector();
 
         if (result === null) {
-            localSettings?.set('mpv_path', undefined);
-            setMpvPath('');
+            localSettings?.set('mpv_path', defaultMpvPath);
+            setMpvPath(defaultMpvPath);
             return;
         }
 
@@ -102,9 +104,13 @@ export const MpvSettings = () => {
 
     useEffect(() => {
         const getMpvPath = async () => {
-            if (!localSettings) return setMpvPath('');
-            const mpvPath = (await localSettings.get('mpv_path')) as string;
-            return setMpvPath(mpvPath);
+            if (!localSettings) return setMpvPath(defaultMpvPath);
+            const mpvPath = await localSettings.get('mpv_path');
+            if (mpvPath === undefined) {
+                return setMpvPath(defaultMpvPath);
+            } else {
+                return setMpvPath(mpvPath as string);
+            }
         };
 
         getMpvPath();
