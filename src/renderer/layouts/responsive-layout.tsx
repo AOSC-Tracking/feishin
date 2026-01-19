@@ -1,7 +1,6 @@
 import isElectron from 'is-electron';
 import { useNavigate } from 'react-router';
 
-import { useAppTracker } from '/@/renderer/features/analytics/hooks/use-app-tracker';
 import { CommandPalette } from '/@/renderer/features/search/components/command-palette';
 import { useGarbageCollection } from '/@/renderer/hooks/use-garbage-collection';
 import { useIsMobile } from '/@/renderer/hooks/use-is-mobile';
@@ -31,8 +30,6 @@ const ResponsiveLayoutBase = ({ shell }: ResponsiveLayoutProps) => {
 };
 
 export const ResponsiveLayout = ({ shell }: ResponsiveLayoutProps) => {
-    useAppTracker();
-
     return (
         <>
             <ResponsiveLayoutBase shell={shell} />
