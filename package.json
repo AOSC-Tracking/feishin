@@ -187,7 +187,13 @@
         "onlyBuiltDependencies": [
             "electron",
             "esbuild"
-        ]
+        ],
+        "overrides": {
+            "electron": "39.2.3",
+            "electron-builder": "npm:@loongdotjs/electron-builder",
+            "app-builder-lib": "npm:@loongdotjs/app-builder-lib",
+            "builder-util": "npm:@loongdotjs/builder-util"
+        }
     },
     "productName": "feishin"
 }
