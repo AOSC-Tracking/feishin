@@ -1,0 +1,5 @@
+overrides:
+  "electron": "39.2.7"
+  "electron-builder": "npm:@loongdotjs/electron-builder"
+  "app-builder-lib": "npm:@loongdotjs/app-builder-lib"
+  "builder-util": "npm:@loongdotjs/builder-util"
