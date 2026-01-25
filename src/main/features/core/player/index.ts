@@ -68,7 +68,7 @@ const mpvLog = (
     }
 };
 
-const MPV_BINARY_PATH = store.get('mpv_path') as string | undefined;
+const MPV_BINARY_PATH = store.get('mpv_path') as string | '/usr/bin/mpv';
 
 const prefetchPlaylistParams = [
     '--prefetch-playlist=no',
