@@ -1715,8 +1715,8 @@ const initialState: SettingsState = {
         transcode: {
             enabled: false,
         },
-        type: PlayerType.WEB,
-        webAudio: true,
+        type: PlayerType.LOCAL,
+        webAudio: false,
     },
     queryBuilder: {
         tag: [],
