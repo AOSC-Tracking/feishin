@@ -1,5 +1,5 @@
 export const disableAutoUpdates = () => {
-    return process.env['DISABLE_AUTO_UPDATES'];
+    return true;
 };
 
 export const isMacOS = () => {
